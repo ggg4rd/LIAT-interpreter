@@ -1,0 +1,38 @@
+import pandas as pd
+
+print('瀚揚有限公司 LIATInterpretor v1.3  BY 志展')
+filenamepre = input('匯入檔名')
+filename = filenamepre+'.csv'
+
+#df = pd.read_csv ('ResultArchive_M1-E-24408_20220119_111330.csv', sep=';')
+#6341788
+
+df = pd.read_csv(filename, sep=';')
+
+print(df)
+
+#df.to_excel("finished_" + filename + ".xlsx", index=False, header=True)
+
+#['SampleId', 'StartTime', 'ResultOverallStatus','CtValue']
+df2 = (df.sort_values(by=['RunNumber'], ascending=False))
+df3 = df[["SampleId", "StartTime", "Target", "ResultOverallStatus", "CtValue"]]
+df4 = df3.sort_index(ascending=False)
+
+print(df4)
+
+df5 = (df4['ResultOverallStatus'] == 'Positive')
+Pos = (df4.loc[df5, ])
+
+df2.to_excel("Full_" + filenamepre + ".xlsx", index=False, header=True)
+df4.to_excel("Simple_" + filenamepre + ".xlsx", index=False, header=True)
+Pos.to_excel("Pos_" + filenamepre + ".xlsx", index=False, header=True)
+
+#samp = df["SampleId"].isin([sample])
+
+i = 1
+for i in range(100):
+
+   sample = 1
+   sample = int(input('Sample ID'))
+   samp = df4[df4['SampleId'] == sample]
+   print(samp)
