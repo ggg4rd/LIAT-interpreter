@@ -1,6 +1,6 @@
 import pandas as pd
 
-print('瀚揚有限公司 LIATInterpretor v1.3  BY 志展')
+print(' LIATInterpretor v1.3  ')
 filenamepre = input('匯入檔名')
 filename = filenamepre+'.csv'
 
